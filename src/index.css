@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+ * Tek kaynak (:root) renk paleti.
+ * Tüm renk değerleri burada tanımlıdır; başka hiçbir yerde renk hex'i geçmez.
+ * @theme bloğu yalnızca bu değişkenleri Tailwind utility üretimi için aktarır.
+ * ------------------------------------------------------------------------ */
+:root {
+  /* === Primary — turuncu (logodaki kurumsal renk) === */
+  --primary-50:  #fff3ec;
+  --primary-100: #ffdfc7;
+  --primary-200: #ffbe97;
+  --primary-300: #ff9d68;
+  --primary-400: #ff8a4a;
+  --primary-500: #ee8036;
+  --primary-600: #ec682b;
+  --primary-700: #c45420;
+  --primary-800: #9c421d;
+  --primary-900: #7d361a;
+  --primary-950: #4a1f0e;
+
+  /* === Secondary — antrasit (ana metin / koyu yüzey) === */
+  --secondary-50:  #f6f6f6;
+  --secondary-100: #e8e8e8;
+  --secondary-200: #d0d0d0;
+  --secondary-300: #b0b0b0;
+  --secondary-400: #969696;
+  --secondary-500: #7d7d7d;
+  --secondary-600: #6a6a6a;
+  --secondary-700: #585858;
+  --secondary-800: #4a4a4a;
+  --secondary-900: #3f3f3f;
+  --secondary-950: #1f1f1f;
+
+  /* === Neutral — gri (yüzey / kenar) === */
+  --neutral-50:  #f8f9fa;
+  --neutral-100: #f1f3f5;
+  --neutral-200: #e9ecef;
+  --neutral-300: #dee2e6;
+  --neutral-400: #ced4da;
+  --neutral-500: #adb5bd;
+  --neutral-600: #6c757d;
+  --neutral-700: #495057;
+  --neutral-800: #343a40;
+  --neutral-900: #212529;
+  --neutral-950: #0d1117;
+
+  /* === Success — yeşil === */
+  --success-50:  #ecfdf5;
+  --success-100: #d1fae5;
+  --success-200: #a7f3d0;
+  --success-300: #6ee7b7;
+  --success-400: #34d399;
+  --success-500: #10b981;
+  --success-600: #059669;
+  --success-700: #047857;
+  --success-800: #065f46;
+  --success-900: #064e3b;
+  --success-950: #022c22;
+
+  /* === Warning — amber === */
+  --warning-50:  #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+  --warning-950: #451a03;
+
+  /* === Danger — kırmızı === */
+  --danger-50:  #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --danger-800: #991b1b;
+  --danger-900: #7f1d1d;
+  --danger-950: #450a0a;
+
+  /* === Yüzey / shadcn semantic tokens (hepsi yukarıdaki skala'lara bağlı) === */
+  --background: #ffffff;
+  --foreground: var(--secondary-900);
+
+  --card: #ffffff;
+  --card-foreground: var(--secondary-900);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--secondary-900);
+
+  --primary: var(--primary-500);
+  --primary-foreground: #ffffff;
+
+  --secondary: var(--secondary-800);
+  --secondary-foreground: #ffffff;
+
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-600);
+
+  --accent: var(--primary-100);
+  --accent-foreground: var(--primary-700);
+
+  --destructive: var(--danger-600);
+  --destructive-foreground: #ffffff;
+
+  --border: var(--neutral-200);
+  --input: var(--neutral-200);
+  --ring: var(--primary-500);
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: var(--secondary-950);
+  --foreground: var(--neutral-100);
+
+  --card: var(--secondary-900);
+  --card-foreground: var(--neutral-100);
+
+  --popover: var(--secondary-900);
+  --popover-foreground: var(--neutral-100);
+
+  --primary: var(--primary-500);
+  --primary-foreground: #ffffff;
+
+  --secondary: var(--secondary-700);
+  --secondary-foreground: var(--neutral-100);
+
+  --muted: var(--secondary-800);
+  --muted-foreground: var(--neutral-400);
+
+  --accent: var(--secondary-700);
+  --accent-foreground: var(--primary-300);
+
+  --destructive: var(--danger-500);
+  --destructive-foreground: #ffffff;
+
+  --border: var(--secondary-700);
+  --input: var(--secondary-700);
+  --ring: var(--primary-500);
+}
+
+/* ---------------------------------------------------------------------------
+ * Tailwind v4'e renkleri "expose" eden referans bloğu.
+ * Hiçbir hex değer içermez — yalnızca :root değişkenlerine pointer.
+ * ------------------------------------------------------------------------ */
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Zilla Slab", ui-serif, Georgia, serif;
+
+  --color-primary-50:  var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+
+  --color-secondary-50:  var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-950: var(--secondary-950);
+
+  --color-neutral-50:  var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  --color-success-50:  var(--success-50);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+  --color-success-950: var(--success-950);
+
+  --color-warning-50:  var(--warning-50);
+  --color-warning-100: var(--warning-100);
+  --color-warning-200: var(--warning-200);
+  --color-warning-300: var(--warning-300);
+  --color-warning-400: var(--warning-400);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-700: var(--warning-700);
+  --color-warning-800: var(--warning-800);
+  --color-warning-900: var(--warning-900);
+  --color-warning-950: var(--warning-950);
+
+  --color-danger-50:  var(--danger-50);
+  --color-danger-100: var(--danger-100);
+  --color-danger-200: var(--danger-200);
+  --color-danger-300: var(--danger-300);
+  --color-danger-400: var(--danger-400);
+  --color-danger-500: var(--danger-500);
+  --color-danger-600: var(--danger-600);
+  --color-danger-700: var(--danger-700);
+  --color-danger-800: var(--danger-800);
+  --color-danger-900: var(--danger-900);
+  --color-danger-950: var(--danger-950);
+
+  /* shadcn surface tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    margin: 0;
+    min-height: 100svh;
+  }
+}
