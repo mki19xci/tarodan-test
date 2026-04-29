@@ -768,7 +768,7 @@ function ProductCard({
 				{p.popular ? (
 					<Badge
 						variant='dark'
-						className='absolute left-2 top-2 sm:left-3 sm:top-3'>
+						className='absolute left-2 top-2 -rotate-3 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md sm:left-3 sm:top-3'>
 						Popüler
 					</Badge>
 				) : null}
@@ -788,7 +788,7 @@ function ProductCard({
 				</button>
 				<Badge
 					variant='surface'
-					className='absolute bottom-2 left-2 sm:bottom-3 sm:left-3'>
+					className='absolute bottom-2 left-2 rotate-2 rounded-full px-2.5 py-1 shadow-md sm:bottom-3 sm:left-3'>
 					{p.scale}
 				</Badge>
 			</div>
@@ -845,7 +845,7 @@ function ProductRow({ p, onSelect }: { p: Product; onSelect?: () => void }) {
 				{p.popular ? (
 					<Badge
 						variant='dark'
-						className='absolute left-2.5 top-2.5'>
+						className='absolute left-2.5 top-2.5 -rotate-3 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md'>
 						Popüler
 					</Badge>
 				) : null}
@@ -857,7 +857,7 @@ function ProductRow({ p, onSelect }: { p: Product; onSelect?: () => void }) {
 				</button>
 				<Badge
 					variant='surface'
-					className='absolute bottom-2.5 left-2.5'>
+					className='absolute bottom-2.5 left-2.5 rotate-2 rounded-full px-2.5 py-1 shadow-md'>
 					{p.scale}
 				</Badge>
 			</div>
@@ -923,9 +923,9 @@ function ProductSection({
 	onSelect?: () => void;
 }) {
 	return (
-		<section className='space-y-6'>
-			<div className='flex items-center justify-between gap-4'>
-				<h2 className='font-display text-xl font-bold tracking-tight text-secondary-900 sm:text-2xl md:text-3xl'>
+		<section className='space-y-8'>
+			<div className='flex flex-wrap items-end justify-between gap-4'>
+				<h2 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					{title}
 				</h2>
 				<a
@@ -1177,13 +1177,13 @@ function CollectionCard({
 				{c.swap ? (
 					<Badge
 						variant='success'
-						className='absolute left-3 top-3 shadow-sm'>
+						className='absolute left-3 top-3 -rotate-3 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md'>
 						<Repeat className='size-3' /> Takas Açık
 					</Badge>
 				) : null}
 				<Badge
 					variant='surface'
-					className='absolute bottom-3 left-3'>
+					className='absolute bottom-3 left-3 rotate-2 rounded-full px-2.5 py-1 shadow-md'>
 					{c.count} model
 				</Badge>
 			</div>
@@ -1242,9 +1242,9 @@ function BestCollections({
 	onSelectCollection?: () => void;
 }) {
 	return (
-		<section className='space-y-6'>
-			<div className='flex items-center justify-between'>
-				<h2 className='font-display text-xl font-bold tracking-tight text-secondary-900 sm:text-2xl md:text-3xl'>
+		<section className='space-y-8'>
+			<div className='flex flex-wrap items-end justify-between gap-4'>
+				<h2 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					En İyi Koleksiyonlar
 				</h2>
 				<a
@@ -1474,10 +1474,12 @@ function PromoBanner() {
 function BrandsStrip() {
 	return (
 		<section className='space-y-6'>
-			<div className='flex items-center justify-between'>
-				<h2 className='font-display text-2xl font-bold tracking-tight text-secondary-900'>
-					Popüler Markalar
-				</h2>
+			<div className='flex flex-wrap items-end justify-between gap-4'>
+				<div className='flex items-end gap-3'>
+					<h2 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
+						Popüler Markalar
+					</h2>
+				</div>
 				<a
 					href='#'
 					className='text-sm font-semibold text-primary-600 hover:text-primary-700'>
@@ -1592,6 +1594,60 @@ function Footer() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Home — color-blocked layout helpers                                */
+/* ------------------------------------------------------------------ */
+function SectionBlock({
+	tone,
+	children,
+	className,
+}: {
+	tone?: string;
+	children: React.ReactNode;
+	className?: string;
+}) {
+	return (
+		<section
+			className={`${tone ?? 'bg-background'} ${className ?? 'py-12 sm:py-20'}`}>
+			<div className='mx-auto max-w-[1280px] px-4 sm:px-6'>{children}</div>
+		</section>
+	);
+}
+
+/** Üstte bg1, altta bg2 olan iki section'ı yumuşak dalgayla birleştirir */
+function WavyDivider({ from, to }: { from: string; to: string }) {
+	return (
+		<div className={`${from} -mb-px`}>
+			<svg
+				viewBox='0 0 1440 80'
+				preserveAspectRatio='none'
+				className={`block h-12 w-full sm:h-16 ${to.replace('bg-', 'fill-')}`}>
+				<path d='M0,40 C240,90 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z' />
+			</svg>
+		</div>
+	);
+}
+
+/** Hafifçe dönmüş, drop-shadow'lu yapışkan badge — section köşelerine süs */
+function StickerBadge({
+	children,
+	tone = 'bg-primary-500 text-primary-foreground',
+	rotate = '-rotate-6',
+	className,
+}: {
+	children: React.ReactNode;
+	tone?: string;
+	rotate?: string;
+	className?: string;
+}) {
+	return (
+		<span
+			className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-extrabold tracking-wider uppercase shadow-md ${tone} ${rotate} ${className ?? ''}`}>
+			{children}
+		</span>
+	);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Home main                                                          */
 /* ------------------------------------------------------------------ */
 function HomeMain({
@@ -1602,27 +1658,57 @@ function HomeMain({
 	onSelectCollection?: () => void;
 }) {
 	return (
-		<main className='mx-auto max-w-[1280px] space-y-10 px-4 py-6 sm:space-y-14 sm:px-6 sm:py-10'>
-			<ProductSection
-				title='Popüler İlanlar'
-				items={discounted}
-				onSelect={onSelectProduct}
+		<main>
+			<SectionBlock tone='bg-primary-50'>
+				<ProductSection
+					title='Popüler İlanlar'
+					items={discounted}
+					onSelect={onSelectProduct}
+				/>
+			</SectionBlock>
+			<SectionBlock
+				tone='bg-background'
+				className='py-10 sm:py-14'>
+				<CategoryCards />
+			</SectionBlock>
+			<SectionBlock tone='bg-secondary-50'>
+				<ProductSection
+					title='Yeni Gelenler'
+					items={popular}
+					onSelect={onSelectProduct}
+				/>
+			</SectionBlock>
+			<SectionBlock
+				tone='bg-background'
+				className='py-10 sm:py-14'>
+				<PromoBanner />
+			</SectionBlock>
+			<SectionBlock tone='bg-primary-100'>
+				<ProductSection
+					title='İndirimdekiler'
+					items={discounted}
+					onSelect={onSelectProduct}
+				/>
+			</SectionBlock>
+			<WavyDivider
+				from='bg-primary-100'
+				to='bg-secondary-100'
 			/>
-			<CategoryCards />
-			<ProductSection
-				title='Yeni Gelenler'
-				items={popular}
-				onSelect={onSelectProduct}
+			<SectionBlock tone='bg-secondary-100'>
+				<BestCollections onSelectCollection={onSelectCollection} />
+			</SectionBlock>
+			<WavyDivider
+				from='bg-secondary-100'
+				to='bg-neutral-100'
 			/>
-			<PromoBanner />
-			<ProductSection
-				title='İndirimdekiler'
-				items={discounted}
-				onSelect={onSelectProduct}
-			/>
-			<BestCollections onSelectCollection={onSelectCollection} />
-			<WeeklyDuo />
-			<BrandsStrip />
+			<SectionBlock tone='bg-neutral-100'>
+				<WeeklyDuo />
+			</SectionBlock>
+			<SectionBlock
+				tone='bg-background'
+				className='py-10 sm:py-14'>
+				<BrandsStrip />
+			</SectionBlock>
 		</main>
 	);
 }
@@ -2015,7 +2101,9 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 	return (
 		<div className='flex items-center gap-2'>
 			<span className='h-5 w-1 rounded-full bg-primary-500' />
-			<h2 className='font-display text-lg font-bold text-secondary-900'>{children}</h2>
+			<h2 className='font-display text-lg font-bold text-secondary-900'>
+				{children}
+			</h2>
 		</div>
 	);
 }
@@ -2096,7 +2184,7 @@ function DetailMain({
 				<div className='text-xs font-bold uppercase tracking-wider text-neutral-500'>
 					{detailProduct.brand}
 				</div>
-				<h1 className='font-display mt-1 text-2xl font-extrabold leading-tight tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display mt-1 text-2xl font-extrabold leading-tight tracking-tight text-secondary-900 sm:text-3xl md:text-4xl'>
 					{detailProduct.title}
 				</h1>
 				<div className='mt-3 flex flex-wrap items-center gap-3 text-sm font-semibold text-neutral-500'>
@@ -2170,15 +2258,21 @@ function DetailMain({
 								alt={detailProduct.title}
 								className='absolute inset-0 size-full object-cover'
 							/>
-							<div className='absolute left-4 top-4 flex flex-col gap-2'>
-								<Badge variant='success'>
+							<div className='absolute left-4 top-4 flex flex-col items-start gap-2'>
+								<Badge
+									variant='success'
+									className='-rotate-3 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md'>
 									<Repeat className='size-3' /> Takas Açık
 								</Badge>
-								<Badge variant='dark'>Popüler</Badge>
+								<Badge
+									variant='dark'
+									className='rotate-2 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md'>
+									Popüler
+								</Badge>
 							</div>
 							<Badge
 								variant='surface'
-								className='absolute bottom-4 left-4'>
+								className='absolute bottom-4 left-4 -rotate-2 rounded-full px-2.5 py-1 shadow-md'>
 								{detailProduct.scale}
 							</Badge>
 						</div>
@@ -2440,7 +2534,7 @@ function CollectionsMain({
 						<ChevronLeft className='size-5' />
 					</button>
 				) : null}
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Koleksiyonlar
 				</h1>
 			</div>
@@ -2588,13 +2682,13 @@ function CollectionDetailMain({
 					{detailCollection.swap ? (
 						<Badge
 							variant='success'
-							className='absolute left-3 top-3 shadow-md sm:left-4 sm:top-4'>
+							className='absolute left-3 top-3 -rotate-3 rounded-full px-2.5 py-1 uppercase tracking-wider shadow-md sm:left-4 sm:top-4'>
 							<Repeat className='size-3' /> Takas Açık
 						</Badge>
 					) : null}
 					<Badge
 						variant='surface'
-						className='absolute bottom-3 left-3 sm:bottom-4 sm:left-4'>
+						className='absolute bottom-3 left-3 rotate-2 rounded-full px-2.5 py-1 shadow-md sm:bottom-4 sm:left-4'>
 						{detailCollection.count} model
 					</Badge>
 				</div>
@@ -2607,7 +2701,7 @@ function CollectionDetailMain({
 							className='bg-background'>
 							{detailCollection.category}
 						</Badge>
-						<h1 className='font-display mt-3 text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+						<h1 className='font-display mt-3 text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 							{detailCollection.name}
 						</h1>
 						<p className='mt-2 text-sm leading-relaxed text-neutral-600'>
@@ -3230,7 +3324,7 @@ function ManufacturersMain() {
 	return (
 		<main className='mx-auto max-w-[1280px] space-y-6 px-4 py-6 sm:px-6 sm:py-10'>
 			<div className='flex flex-wrap items-center justify-between gap-3'>
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Üreticiler
 				</h1>
 			</div>
@@ -3341,7 +3435,7 @@ function CartMain({
 }) {
 	return (
 		<main className='mx-auto max-w-[1280px] px-4 py-6 sm:px-6 sm:py-10'>
-			<h1 className='font-display mb-6 text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+			<h1 className='font-display mb-6 text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 				Sepetim
 			</h1>
 
@@ -3547,7 +3641,7 @@ function CreateListingMain() {
 		<main className='mx-auto max-w-[1280px] px-4 py-6 sm:px-6 sm:py-10'>
 			{/* Başlık */}
 			<header className='mb-6'>
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Yeni İlan Oluştur
 				</h1>
 			</header>
@@ -4198,7 +4292,7 @@ function CheckoutMain({ onCart }: { onCart?: () => void }) {
 					className='grid size-10 place-items-center rounded-lg text-neutral-500 transition hover:bg-neutral-100 hover:text-primary-600'>
 					<ArrowLeft className='size-5' />
 				</button>
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Ödeme
 				</h1>
 			</div>
@@ -4603,7 +4697,7 @@ function SwapsMain({
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Takaslarım
 					</h1>
 				</div>
@@ -4726,7 +4820,7 @@ function SwapDetailMain({ onSwaps }: { onSwaps?: () => void }) {
 						<ChevronLeft className='size-5' />
 					</button>
 					<div className='min-w-0'>
-						<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+						<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 							Takas Detayı
 						</h1>
 						<div className='mt-2 flex flex-wrap items-center gap-2 text-sm text-neutral-500'>
@@ -4918,7 +5012,7 @@ function CreateSwapMain({ onBack }: { onBack?: () => void }) {
 					className='grid size-10 shrink-0 place-items-center rounded-lg text-secondary-900 transition hover:bg-neutral-100'>
 					<ChevronLeft className='size-5' />
 				</button>
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Takas Teklifi Oluştur
 				</h1>
 			</div>
@@ -5057,7 +5151,9 @@ function CreateSwapMain({ onBack }: { onBack?: () => void }) {
 
 			{/* Teklif özeti */}
 			<section className='mt-6 rounded-2xl border border-primary-200 bg-primary-50 p-5'>
-				<h2 className='font-display text-sm font-bold text-secondary-900'>Teklif Özeti</h2>
+				<h2 className='font-display text-sm font-bold text-secondary-900'>
+					Teklif Özeti
+				</h2>
 				<dl className='mt-3 space-y-2 text-sm'>
 					<div className='flex items-center justify-between'>
 						<dt className='text-neutral-600'>Seçilen Ürünler</dt>
@@ -5399,7 +5495,7 @@ function NotificationsMain({ onBack }: { onBack?: () => void }) {
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Bildirimler
 					</h1>
 				</div>
@@ -6034,7 +6130,7 @@ function ProfileEditMain({ onBack }: { onBack?: () => void }) {
 						<ChevronLeft className='size-5' />
 					</button>
 				) : null}
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Ayarlar
 				</h1>
 			</div>
@@ -6427,7 +6523,7 @@ function FavoritesMain({
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Favorilerim
 					</h1>
 				</div>
@@ -6611,12 +6707,12 @@ function MyListingCard({
 					loading='lazy'
 					className='absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-[1.04]'
 				/>
-				<div className='absolute left-2 top-2 sm:left-3 sm:top-3'>
+				<div className='absolute left-2 top-2 -rotate-3 [&>span]:rounded-full [&>span]:px-2.5 [&>span]:py-1 [&>span]:uppercase [&>span]:tracking-wider [&>span]:shadow-md sm:left-3 sm:top-3'>
 					<ListingStatusBadge status={l.status} />
 				</div>
 				<Badge
 					variant='surface'
-					className='absolute bottom-2 left-2 sm:bottom-3 sm:left-3'>
+					className='absolute bottom-2 left-2 rotate-2 rounded-full px-2.5 py-1 shadow-md sm:bottom-3 sm:left-3'>
 					{l.scale}
 				</Badge>
 			</div>
@@ -6707,7 +6803,7 @@ function MyListingsMain({
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						İlanlarım
 					</h1>
 				</div>
@@ -7004,7 +7100,7 @@ function OffersMain({ onBack }: { onBack?: () => void }) {
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Tekliflerim
 					</h1>
 				</div>
@@ -7177,7 +7273,7 @@ function MessagesMain({ onBack }: { onBack?: () => void }) {
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Mesajlar
 					</h1>
 				</div>
@@ -7529,7 +7625,7 @@ function OrdersMain({ onBack }: { onBack?: () => void }) {
 							<ChevronLeft className='size-5' />
 						</button>
 					) : null}
-					<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+					<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 						Siparişlerim
 					</h1>
 				</div>
@@ -7686,7 +7782,7 @@ function MembershipMain({ onBack }: { onBack?: () => void }) {
 						<ChevronLeft className='size-5' />
 					</button>
 				) : null}
-				<h1 className='font-display text-2xl font-extrabold tracking-tight text-secondary-900 sm:text-3xl'>
+				<h1 className='font-display text-3xl font-extrabold leading-[1.05] tracking-tight text-secondary-900 sm:text-4xl md:text-5xl'>
 					Üyelik Planları
 				</h1>
 			</div>

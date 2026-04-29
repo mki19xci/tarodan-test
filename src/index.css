@@ -261,7 +261,7 @@
     @apply border-border;
   }
   html, body {
-    @apply bg-background text-foreground;
+    @apply bg-primary-50 text-foreground;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
