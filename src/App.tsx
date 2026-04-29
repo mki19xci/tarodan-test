@@ -35,6 +35,7 @@ import {
 	Phone,
 	Plus,
 	Repeat,
+	Ruler,
 	Search,
 	Settings,
 	Share2,
@@ -523,13 +524,13 @@ function SubNav({
 		<>
 			{/* Desktop sub-nav */}
 			<div className='hidden border-b border-neutral-100 bg-background lg:block'>
-				<div className='mx-auto flex h-12 max-w-[1280px] items-center justify-between gap-4 px-6 text-sm'>
+				<div className='mx-auto flex h-12 max-w-[1280px] items-center gap-4 px-6 text-sm'>
 					<nav className='flex items-center gap-1'>
 						<Popover>
 							<PopoverTrigger asChild>
 								<button className='flex items-center gap-1.5 rounded-lg px-3 py-2 font-semibold text-secondary-900 transition hover:bg-neutral-100 data-[state=open]:bg-neutral-100 data-[state=open]:text-primary-600'>
-									Kategoriler{' '}
-									<ChevronDown className='size-4 transition data-[state=open]:rotate-180' />
+									<Menu className='size-4' />
+									Kategoriler
 								</button>
 							</PopoverTrigger>
 							<PopoverContent
@@ -573,8 +574,8 @@ function SubNav({
 						<Popover>
 							<PopoverTrigger asChild>
 								<button className='flex items-center gap-1.5 rounded-lg px-3 py-2 font-semibold text-secondary-900 transition hover:bg-neutral-100 data-[state=open]:bg-neutral-100 data-[state=open]:text-primary-600'>
-									Ölçek{' '}
-									<ChevronDown className='size-4 transition data-[state=open]:rotate-180' />
+									<Ruler className='size-4' />
+									Ölçek
 								</button>
 							</PopoverTrigger>
 							<PopoverContent
@@ -606,7 +607,8 @@ function SubNav({
 								e.preventDefault();
 								onCollections?.();
 							}}
-							className='whitespace-nowrap rounded-lg px-3 py-2 font-medium text-secondary-900 hover:bg-neutral-100 hover:text-primary-600'>
+							className='flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 font-medium text-secondary-900 hover:bg-neutral-100 hover:text-primary-600'>
+							<LayoutGrid className='size-4' />
 							Koleksiyonlar
 						</a>
 						<a
@@ -615,7 +617,8 @@ function SubNav({
 								e.preventDefault();
 								onManufacturers?.();
 							}}
-							className='whitespace-nowrap rounded-lg px-3 py-2 font-medium text-secondary-900 hover:bg-neutral-100 hover:text-primary-600'>
+							className='flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 font-medium text-secondary-900 hover:bg-neutral-100 hover:text-primary-600'>
+							<Store className='size-4' />
 							Üreticiler
 						</a>
 					</nav>
@@ -921,7 +924,7 @@ function ProductSection({
 }) {
 	return (
 		<section className='space-y-6'>
-			<div className='flex items-end justify-between gap-4'>
+			<div className='flex items-center justify-between gap-4'>
 				<h2 className='font-display text-xl font-bold tracking-tight text-secondary-900 sm:text-2xl md:text-3xl'>
 					{title}
 				</h2>
@@ -1240,7 +1243,7 @@ function BestCollections({
 }) {
 	return (
 		<section className='space-y-6'>
-			<div className='flex items-end justify-between'>
+			<div className='flex items-center justify-between'>
 				<h2 className='font-display text-xl font-bold tracking-tight text-secondary-900 sm:text-2xl md:text-3xl'>
 					En İyi Koleksiyonlar
 				</h2>
@@ -1471,7 +1474,7 @@ function PromoBanner() {
 function BrandsStrip() {
 	return (
 		<section className='space-y-6'>
-			<div className='flex items-end justify-between'>
+			<div className='flex items-center justify-between'>
 				<h2 className='font-display text-2xl font-bold tracking-tight text-secondary-900'>
 					Popüler Markalar
 				</h2>
@@ -2228,7 +2231,7 @@ function DetailMain({
 
 					{/* Değerlendirmeler */}
 					<section className='space-y-5'>
-						<div className='flex flex-wrap items-end justify-between gap-3'>
+						<div className='flex flex-wrap items-center justify-between gap-3'>
 							<SectionHeading>Ürün Değerlendirmeleri</SectionHeading>
 							<div className='flex items-center gap-2 text-sm'>
 								<StarRow value={detailProduct.rating} />
@@ -2376,7 +2379,7 @@ function DetailMain({
 
 			{/* Benzer İlanlar — altta full-width carousel */}
 			<section className='mt-12 space-y-6'>
-				<div className='flex items-end justify-between gap-4'>
+				<div className='flex items-center justify-between gap-4'>
 					<h2 className='font-display text-xl font-bold tracking-tight text-secondary-900 sm:text-2xl md:text-3xl'>
 						Benzer İlanlar
 					</h2>
