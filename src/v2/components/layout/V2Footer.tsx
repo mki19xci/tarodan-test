@@ -47,7 +47,7 @@ export function V2Footer() {
 							<Link
 								to='/v2'
 								className='font-v2 text-[28px] font-semibold tracking-tight text-v2-ink'>
-								tarodan<span className='text-v2-accent'>.</span>
+								taro<span className='text-v2-faint'>dan</span><span className='text-v2-accent'>.</span>
 							</Link>
 							<p className='mt-4 max-w-xs text-[14px] leading-relaxed text-v2-muted'>
 								Türkiye'nin en büyük diecast model araba pazarı.

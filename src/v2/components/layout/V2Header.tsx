@@ -18,7 +18,7 @@ export function V2Header() {
           to="/v2"
           className="font-v2 text-[22px] font-semibold tracking-tight text-v2-ink"
         >
-          tarodan<span className="text-v2-accent">.</span>
+          taro<span className="text-v2-faint">dan</span><span className="text-v2-accent">.</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
