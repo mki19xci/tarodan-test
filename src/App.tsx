@@ -318,7 +318,7 @@ function Header({
 							onClick={onNotifications}
 							className='relative grid size-9 place-items-center rounded-lg text-secondary-900 hover:bg-neutral-100'>
 							<Bell className='size-5' />
-							<span className='absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-md bg-primary-500 px-1 text-sm font-bold text-primary-foreground'>
+							<span className='absolute -right-0.5 -top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-primary-500 px-1 text-[10px] font-semibold leading-none text-primary-foreground ring-2 ring-background'>
 								3
 							</span>
 						</button>
@@ -347,7 +347,7 @@ function Header({
 							onClick={onCart}
 							className='relative grid size-9 place-items-center rounded-lg text-secondary-900 hover:bg-neutral-100'>
 							<ShoppingCart className='size-5' />
-							<span className='absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-md bg-primary-500 px-1 text-sm font-bold text-primary-foreground'>
+							<span className='absolute -right-0.5 -top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-primary-500 px-1 text-[10px] font-semibold leading-none text-primary-foreground ring-2 ring-background'>
 								2
 							</span>
 						</button>
@@ -400,7 +400,7 @@ function Header({
 							onClick={onNotifications}
 							className='relative grid size-11 place-items-center rounded-lg text-primary-foreground hover:bg-background/15'>
 							<Bell className='size-5' />
-							<span className='absolute right-1.5 top-1.5 grid h-4 min-w-4 place-items-center rounded-md bg-background px-1 text-sm font-bold text-primary-600'>
+							<span className='absolute right-1 top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-background px-1 text-[10px] font-semibold leading-none text-primary-600 ring-2 ring-primary-500'>
 								3
 							</span>
 						</button>
@@ -429,7 +429,7 @@ function Header({
 							onClick={onCart}
 							className='relative grid size-11 place-items-center rounded-lg text-primary-foreground hover:bg-background/15'>
 							<ShoppingCart className='size-5' />
-							<span className='absolute right-1.5 top-1.5 grid h-4 min-w-4 place-items-center rounded-md bg-background px-1 text-sm font-bold text-primary-600'>
+							<span className='absolute right-1 top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-background px-1 text-[10px] font-semibold leading-none text-primary-600 ring-2 ring-primary-500'>
 								2
 							</span>
 						</button>
